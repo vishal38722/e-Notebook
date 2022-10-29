@@ -27,9 +27,12 @@ function Login() {
         const json = await response.json();
         console.log(json)
         if (json.success) {
+            localStorage.setItem('token', json.authToken)
             navigate("/")   
         }
-        console.log(credentials.email, "  ", credentials.password);
+        else {
+            alert("Invalid Credentials");
+        }
     }
 
 
@@ -40,15 +43,15 @@ function Login() {
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Email</label>
-                        <input type="email" placeholder='Enter your email' className="form-control" value={credentials.email} id="email" name='email' aria-describedby="emailHelp" onChange={handleChange} />
+                        <input type="email" placeholder='Enter your email' className="form-control" value={credentials.email} id="email" name='email' required aria-describedby="emailHelp" onChange={handleChange} />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Password</label>
-                        <input type="password" placeholder='Enter your password' className="form-control" value={credentials.password} id="password" name='password' onChange={handleChange} />
+                        <input type="password" placeholder='Enter your password' className="form-control" value={credentials.password} id="password" name='password' required onChange={handleChange} />
                     </div>
                     <div className="mb-3 form-check">
                         <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-                        <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                        <label className="form-check-label" htmlFor="exampleCheck1">Remember me</label>
                     </div>
                     <button type="submit" className="btn btn-primary">Login</button>
                 </form>

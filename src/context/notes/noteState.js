@@ -15,12 +15,12 @@ const NoteState = (props) => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMzYzdjMDQ2MWE2NzJjYzAxOTRlOWI2In0sImlhdCI6MTY2NDk3Nzc1OH0.1BD9dFM76E1uru4dtl8mhpBxqMYNat_ZtAuUSrm6RAY'
+        'auth-token' : localStorage.getItem('token')
       }
     });
     // this function returns promise so add "await" before it
     const json = await response.json(); 
-    console.log(json);
+    // console.log(json);
     setNotes(json)
   }
 
@@ -33,7 +33,7 @@ const NoteState = (props) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMzYzdjMDQ2MWE2NzJjYzAxOTRlOWI2In0sImlhdCI6MTY2NDk3Nzc1OH0.1BD9dFM76E1uru4dtl8mhpBxqMYNat_ZtAuUSrm6RAY'
+        'auth-token' : localStorage.getItem('token')
       },
       body: JSON.stringify({title, description, tag}) 
     });
@@ -63,16 +63,16 @@ const NoteState = (props) => {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMzYzdjMDQ2MWE2NzJjYzAxOTRlOWI2In0sImlhdCI6MTY2NDk3Nzc1OH0.1BD9dFM76E1uru4dtl8mhpBxqMYNat_ZtAuUSrm6RAY'
+        'auth-token' : localStorage.getItem('token')
       }
     });
     const json = response.json(); 
 
-    console.log("Deleting note with id " + id);
     // this filter function will return the notes whose id is not equal to the id passed as parameter
     // in the deleteNote function i.e. for which note (note._id!==id) that note will be returned
     const newNote = notes.filter((note)=>{return note._id!==id});
     setNotes(newNote);
+    console.log("A note with id " + id + "has been deleted");
   }
 
   // Adit a note
@@ -82,7 +82,7 @@ const NoteState = (props) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'auth-token' : 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjMzYzdjMDQ2MWE2NzJjYzAxOTRlOWI2In0sImlhdCI6MTY2NDk3Nzc1OH0.1BD9dFM76E1uru4dtl8mhpBxqMYNat_ZtAuUSrm6RAY'
+        'auth-token' : localStorage.getItem('token')
       },
       body: JSON.stringify({title, description, tag}) 
     });
