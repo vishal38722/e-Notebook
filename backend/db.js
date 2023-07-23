@@ -1,9 +1,9 @@
 const mongoos = require('mongoose');
 
-const mongoURI = "mongodb://localhost:27017/iNotebook"
+const mongoURL = "mongodb://localhost:27017/iNotebook"
 
 const connectToMongo = () => {
-    mongoos.connect(mongoURI, ()=>{
+    mongoos.connect(mongoURL, ()=>{
         console.log("Connected to MongoDB Successfully");
     })
 }

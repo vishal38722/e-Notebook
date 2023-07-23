@@ -6,7 +6,7 @@ const express = require('express')
 connectToMongo();
 
 const app = express()
-const port = 5000       // PORT: 3000 is for React application so for backend we choose another port
+const port = 5000      // PORT: 3000 is for React application so for backend we choose another port
 
 // cors middleware
 const cors = require('cors')

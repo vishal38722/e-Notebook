@@ -2,7 +2,7 @@ import './App.css';
 import React from "react";
 import Home from './components/Home';
 import About from './components/About';
-import Alert from './components/Alert';
+// import Alert from './components/Alert';
 import Navbar from './components/Navbar';
 import NoteState from './context/notes/noteState';
 import Login from './components/Login';

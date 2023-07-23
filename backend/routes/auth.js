@@ -1,4 +1,4 @@
-// we can write this code (request and response) in index.js but to maintain a better managemnt
+// we can write this code (request and response) in index.js, but to maintain a better managemnt
 // we are writing this code in this separate file
 
 const express = require('express');
@@ -53,8 +53,10 @@ router.post('/createuser',[
     // res.send(req.body);
 
     // .then(user => res.json(user))
-    // .catch(err=>{console.log(err),
-    // res.json({error : 'Please enter a unique value for email'})})
+    // .catch(err=>{
+    //    console.log(err),
+    //    res.json({error : 'Please enter a unique value for email'})
+    // })
 
     const data = {
         user : {
@@ -64,11 +66,11 @@ router.post('/createuser',[
 
     // authToken is a token returned to user (by sign method of jwt) after succesful login
     const authToken = jwt.sign(data, JWT_SECRET);
-    console.log(authToken);
+    // console.log(authToken);
     success = true;
     res.json({success, authToken})
     } catch (error) {
-            console.error(error.message);
+            // console.error(error.message);
             res.status(500).send("Internal Server Error");
     }
     
@@ -112,11 +114,11 @@ router.post('/login',[
     
         // authToken is a token returned to user (by sign method of jwt) after succesful login
         const authToken = jwt.sign(data, JWT_SECRET);
-        console.log(authToken);
+        // console.log(authToken);
         success = true;
         res.json({success, authToken})
         } catch (error) {
-                console.error(error.message);
+                // console.error(error.message);
                 res.status(500).send("Internal Server Error");
         }
 })
@@ -131,7 +133,7 @@ router.post('/getuser', fetchuser, async (req, res)=>{
         const user = await User.findById(userId).select("-password");
         res.send(user)
     } catch (error) {
-        console.error(error.message);
+        // console.error(error.message);
         res.status(500).send("Internal Server Error");
 }
 })
