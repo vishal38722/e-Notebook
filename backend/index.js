@@ -6,12 +6,15 @@ const express = require('express')
 connectToMongo();
 
 const app = express()
-const port = 5000      // PORT: 3000 is for React application so for backend we choose another port
+const PORT = 5000      // PORT: 3000 is for React application so for backend we choose another PORT
 
 // cors middleware
 const cors = require('cors')
 app.use(cors())
 
+app.get("/", (req, res) => {
+  res.send(`Server is running on PORT ${PORT}`);
+})
 // this is middleware for accessing body of the request
 app.use(express.json());
 
@@ -24,6 +27,6 @@ app.use('/api/notes', require('./routes/notes'))
 //   res.send('Hello World!')
 // })
 
-app.listen(port, () => {
-  console.log(`Your app is running at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Your app is running at http://localhost:${PORT}`);
 })
